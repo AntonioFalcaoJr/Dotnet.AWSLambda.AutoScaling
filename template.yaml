@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Sample AutoScaling Manager Lambda.
+
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  AutoScalingManagerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/Dotnet.AWSLambda.AutoScaling.Application/
+      Handler: Dotnet.AWSLambda.AutoScaling.Application::Dotnet.AWSLambda.AutoScaling.Application.Function::HandleAsync
+      Runtime: dotnetcore3.1
+      
+      Environment:
+        Variables:
+          AWS_ACCESS_KEY_ID: VALUE
+          AWS_SECRET_ACCESS_KEY: VALUE
+          AWS_DEFAULT_REGION: VALUE
+      Events:
+        HttpPost:
+          Type: Api
+          Properties:
+            Path: '/api'
+            Method: post

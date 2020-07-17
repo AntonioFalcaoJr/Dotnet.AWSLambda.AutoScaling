@@ -1,0 +1,12 @@
+{
+  "Scalings": [
+    {
+      "Tag": "your-tag-name-here",
+      "Suspend": false
+    },
+    {
+      "Tag": "your-tag-name-here",
+      "Suspend": true
+    }
+  ]
+}

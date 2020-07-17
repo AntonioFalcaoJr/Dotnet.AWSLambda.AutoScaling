@@ -1,0 +1,13 @@
+{
+  "profile": "",
+  "region": "",
+  "configuration": "Release",
+  "framework": "netcoreapp3.1",
+  "function-runtime": "dotnetcore3.1",
+  "function-memory-size": 256,
+  "function-timeout": 900,
+  "function-handler": "Dotnet.AWSLambda.AutoScaling.Application::Dotnet.AWSLambda.AutoScaling.Application.Function::HandleAsync",
+  "function-name": "AutoScalingManager",
+  "function-role": "",
+  "environment-variables": ""
+}
