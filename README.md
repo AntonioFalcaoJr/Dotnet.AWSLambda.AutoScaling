@@ -1,4 +1,4 @@
-# .NET AWS Lambda with SAM - Auto Scaling Manager
+# .NET Core 3.x AWS Lambda with SAM <br> Auto Scaling Manager
 
 This project demonstrates the integration with **AWS Auto-Scaling** service and **.NET Core**, using **SAM** for building and test.
 
