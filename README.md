@@ -4,8 +4,9 @@ This project demonstrates the integration with **AWS Auto-Scaling** service and 
 
 This sample contains source code and supporting files for a **serverless application** that you can deploy with the **SAM CLI**. 
 
-- src - Multilayer .NET Core project for the application's Lambda function.
-- test - Unit tests for the application code with XUnit. 
+- [`./src`](./src) - Multilayer .NET Core project for the application's Lambda function.
+- [`./.events`](./.events) - Invocation events that you can use to invoke the function.
+- [`./test`](./test) - Unit tests for the application code with XUnit. 
 - [`template.yaml`](./template.yaml) - A template that defines the application's AWS resources.
 
 ## How its works
@@ -114,15 +115,27 @@ sam build
 
 The SAM CLI installs dependencies defined in `./src/Dotnet.AWSLambda.AutoScaling.Application/Dotnet.AWSLambda.AutoScaling.Application.csproj`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
 
-Test a single function by invoking it directly with a test **event**. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the [`event`](./event.json) file in this project.
+#### Events
+
+Test a single function by invoking it directly with a test **event**. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the [`./.events`](./.events) folder in this project.
+
+> [`json-event.json`](./.events/json-event.json) represents a simple json input.    
+> [`request-event.json`](./.events/request-event.json) represents a request json input.
 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-sam local invoke -e event.json
+sam local invoke -e json-event.json
+```
+OR
+
+```bash
+sam local invoke -e request-event.json
 ```
 
-The SAM CLI can also emulate the application's as API. Use the `sam local start-api` to run the API locally on port 3000.
+#### API Request
+
+The **SAM CLI** can also emulate the application's as API. Use the `sam local start-api` to run the API locally on port 3000.
 
 ```bash
 sam local start-api
@@ -155,7 +168,9 @@ content-type: application/json
 }
 ```
 
-The SAM CLI reads the application template to determine the API's routes and the functions that they invoke.
+#### API settings
+
+The **SAM CLI** reads the application template to determine the API's routes and the functions that they invoke.
 
 ```yaml
   Events:
@@ -176,7 +191,7 @@ You can set credentials in the AWS credentials file on your local system. This f
 
 This file should contain lines in the following format:
 
-```
+```bash
 [default]
 aws_access_key_id = your_access_key_id
 aws_secret_access_key = your_secret_access_key
