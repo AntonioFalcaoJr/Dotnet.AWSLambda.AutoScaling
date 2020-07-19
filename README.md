@@ -140,14 +140,14 @@ aws_secret_access_key = your_secret_access_key
 
 To set these variables on Linux or macOS, use the export command: 
 
-```
+```bash
 export AWS_ACCESS_KEY_ID=your_access_key_id
 export AWS_SECRET_ACCESS_KEY=your_secret_access_key
 ```
 
 To set these variables on Windows, use the set command: 
 
-```
+```bash
 set AWS_ACCESS_KEY_ID=your_access_key_id
 set AWS_SECRET_ACCESS_KEY=your_secret_access_key
 ```
