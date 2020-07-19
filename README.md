@@ -14,15 +14,64 @@ Using a JSON as input is possible to **suspend** or **resume** processes from a 
 
 Use case: SUSPEND the _Terminate_ and _Launch_ processes before the initial stage from Blue-Green Deploy as a Code Pipeline stage and then, RESUME in the final stage.
 
-JSON sample for using at AWS or this project.
+JSON sample for use at AWS or in this project.
 
 ```json5
-[
-    {
-        "Tag": "your-tag-name-here",
-        "Suspend": true
-    }
-]
+{
+    "Scalings": [
+        {
+            "Tag": "tag-name-here",
+            "Suspend": false
+        }
+    ]
+}
+```
+
+Many scalings:
+
+```json5
+{
+    "Scalings": [
+        {
+            "Tag": "tag-name-here",
+            "Suspend": false
+        },
+        {
+            "Tag": "tag-name-here",
+            "Suspend": true
+        }
+    ]
+}
+```
+
+About Processes, is possible to specify, but if not it will use the default list.
+
+```json5
+{
+    "Scalings": [
+        {
+            "Tag": "tag-name-here",
+            "Suspend": false,
+            "Processes": [
+                "Terminate",
+                "Launch"
+            ]
+        }
+    ]
+}
+```
+
+Default values are defined on file [`ProcessService.cs`](./src/Dotnet.AWSLambda.AutoScaling.Services/Processes/ProcessService.cs):
+
+```c#
+public class ProcessService : IProcessService
+{
+    private static ProcessType LaunchProcessType => new ProcessType {ProcessName = "Launch"};
+    private static ProcessType ScheduledActionsProcessType => new ProcessType {ProcessName = "ScheduledActions"};
+    private static ProcessType TerminateProcessType => new ProcessType {ProcessName = "Terminate"};
+
+// comment for brevity
+}
 ```
 
 ## Function Project

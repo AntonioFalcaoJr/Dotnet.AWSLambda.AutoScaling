@@ -103,5 +103,27 @@ namespace AutoScalingManager.Tests
             var functionTask = Function.HandleAsync(jObject);
             functionTask.GetAwaiter().GetResult();
         }
+        
+        [Fact]
+        public void Should_Handle_With_Simple_Json_With_Processes_As_Input()
+        {
+            const string jString =
+                @"{
+                    'Scalings': [
+                        {
+                            'Tag': 'tag-name-here',
+                            'Suspend': false,
+                            'Processes': [
+                                'Terminate',
+                                'Launch'
+                            ]
+                        }
+                    ]
+                }";
+
+            var jObject = JObject.Parse(jString);
+            var functionTask = Function.HandleAsync(jObject);
+            functionTask.GetAwaiter().GetResult();
+        }
     }
 }
