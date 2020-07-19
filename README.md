@@ -77,7 +77,7 @@ public class ProcessService : IProcessService
 
 ## Function Project
 
-This starter project consists of:
+This project consists of:
 * [`Dotnet.AWSLambda.AutoScaling.Application.Function.cs`](./src/Dotnet.AWSLambda.AutoScaling.Application/Function.cs) - class file containing a class with a single function handler method;
 * [`aws-lambda-tools-defaults.json`](./aws-lambda-tools-defaults.json) - default argument settings for use with **Rider** or **Visual Studio** and command line deployment tools for AWS.
 
