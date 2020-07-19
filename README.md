@@ -89,7 +89,7 @@ Install Amazon.Lambda.Tools Global Tools if not already installed.
 dotnet tool install -g Amazon.Lambda.Tools
 ```
 
-If already installed check if new version is available.
+If already installed check if a new version is available.
 
 ```bash
 dotnet tool update -g Amazon.Lambda.Tools
