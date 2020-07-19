@@ -1,6 +1,6 @@
-# .NET AWS Lambda with SAM - Auto Scaling Manager
+# .NET Core 3.x AWS Lambda with SAM <br> Auto Scaling Manager
 
-This project demonstrates the integration with **AWS Auto Scaling** service and **.NET Core**, using **SAM** for building and test.
+This project demonstrates the integration with **AWS Auto-Scaling** service and **.NET Core**, using **SAM** for building and test.
 
 This sample contains source code and supporting files for a **serverless application** that you can deploy with the **SAM CLI**. 
 
@@ -10,9 +10,9 @@ This sample contains source code and supporting files for a **serverless applica
 
 ## How its works
 
-Using a JSON as input is possible to **suspend** or **resume** processes from a specific auto scaling by _tag name_.
+Using a JSON as input is possible to **suspend** or **resume** processes from a specific auto-scaling by _tag name_.
 
-Use case: SUSPEND the _Terminate_ and _Launch_ processes before the initial stage from Blue-Green Deploy as a Code Pipeline stage and then, RESUME in the final stage.
+> **Use case:** SUSPEND the _Terminate_ and _Launch_ processes as the initial stage from **Blue-Green Deploy** on **Code Pipeline** and then, RESUME in the final stage.
 
 JSON sample for use at AWS or in this project.
 
@@ -44,7 +44,7 @@ Many scalings:
 }
 ```
 
-About Processes, is possible to specify, but if not it will use the default list.
+About **Processes**, is possible to specify, but if not it will use the default list.
 
 ```json5
 {
@@ -80,16 +80,6 @@ This starter project consists of:
 * [`Dotnet.AWSLambda.AutoScaling.Application.Function.cs`](./src/Dotnet.AWSLambda.AutoScaling.Application/Function.cs) - class file containing a class with a single function handler method;
 * [`aws-lambda-tools-defaults.json`](./aws-lambda-tools-defaults.json) - default argument settings for use with **Rider** or **Visual Studio** and command line deployment tools for AWS.
 
-## About SAM
-
-The **Serverless Application Model Command Line Interface** (SAM CLI) is an extension of the AWS CLI that adds functionality for building and testing Lambda applications. It uses **Docker** to run your functions in an Amazon Linux environment that matches Lambda. It can also emulate your application's build environment and API.
-
-To use the SAM CLI, you need the following tools.
-
-* SAM CLI - [Install the SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-* .NET Core - [Install .NET Core](https://www.microsoft.com/net/download)
-* Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community)
-
 ## Amazon.Lambda.Tools:
 
 Install Amazon.Lambda.Tools Global Tools if not already installed.
@@ -103,6 +93,16 @@ If already installed check if new version is available.
 ```bash
 dotnet tool update -g Amazon.Lambda.Tools
 ```
+
+## About SAM
+
+The **Serverless Application Model Command Line Interface** (SAM CLI) is an extension of the AWS CLI that adds functionality for building and testing Lambda applications. It uses **Docker** to run your functions in an Amazon Linux environment that matches Lambda. It can also emulate your application's build environment and API.
+
+To use the SAM CLI, you need the following tools.
+
+* SAM CLI - [Install the SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
+* .NET Core - [Install .NET Core](https://www.microsoft.com/net/download)
+* Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community)
 
 ## Use the SAM CLI to build and test locally
 
@@ -128,26 +128,31 @@ The SAM CLI can also emulate the application's as API. Use the `sam local start-
 sam local start-api
 ```
 
-Then, is possible to request using **CURL** or **REST Client**:
+Then, is possible to request using **cURL** or **REST Client**:
+
+> cURL
 
 ```bash
 curl --header "Content-Type: application/json" -X POST -d "{ 'Scalings': [ { 'Tag': 'your-tag-name-here', 'Suspend': false }, { 'Tag': 'your-tag-name-h', 'Suspend': true } ] }" http://127.0.0.1:3000/api
 ```
+> REST Client
 
 ```http request
 POST http://127.0.0.1:3000/api/
 content-type: application/json
 
-[
-  {
-        "Tag": "your-tag-name-here",
-        "Suspend": false
-    },
-    {
-        "Tag": "your-tag-name-here",
-        "Suspend": true
-    }
-]
+{
+    "Scalings": [
+        {
+            "Tag": "tag-name-here",
+            "Suspend": false
+        },
+        {
+            "Tag": "tag-name-here",
+            "Suspend": true
+        }
+    ]
+}
 ```
 
 The SAM CLI reads the application template to determine the API's routes and the functions that they invoke.
@@ -159,14 +164,6 @@ The SAM CLI reads the application template to determine the API's routes and the
       Properties:
         Path: '/api'
         Method: post
-```
-
-## Unit tests
-
-Tests are defined in the `test` folder in this project.
-
-```bash
-dotnet test
 ```
 
 ## Credentials 
@@ -209,4 +206,12 @@ If you are testing this lambda project with **SAM**, is necessary to inform the 
       AWS_ACCESS_KEY_ID: VALUE
       AWS_SECRET_ACCESS_KEY: VALUE
       AWS_DEFAULT_REGION: VALUE
+```
+
+### Unit tests
+
+Tests are defined in the `test` folder in this project.
+
+```bash
+dotnet test
 ```
