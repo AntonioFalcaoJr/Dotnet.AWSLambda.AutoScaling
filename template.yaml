@@ -14,7 +14,6 @@ Resources:
       CodeUri: ./src/Dotnet.AWSLambda.AutoScaling.Application/
       Handler: Dotnet.AWSLambda.AutoScaling.Application::Dotnet.AWSLambda.AutoScaling.Application.Function::HandleAsync
       Runtime: dotnetcore3.1
-      
       Environment:
         Variables:
           AWS_ACCESS_KEY_ID: VALUE

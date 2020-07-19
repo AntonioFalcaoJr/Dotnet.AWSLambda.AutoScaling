@@ -151,3 +151,13 @@ To set these variables on Windows, use the set command:
 set AWS_ACCESS_KEY_ID=your_access_key_id
 set AWS_SECRET_ACCESS_KEY=your_secret_access_key
 ```
+
+If you are testing this lambda project with **SAM**, is necessary to inform the credentials on [`template.yaml`](./template.yaml):
+
+```yaml
+  Environment:
+    Variables:
+      AWS_ACCESS_KEY_ID: VALUE
+      AWS_SECRET_ACCESS_KEY: VALUE
+      AWS_DEFAULT_REGION: VALUE
+```
