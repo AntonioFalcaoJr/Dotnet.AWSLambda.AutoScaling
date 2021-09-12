@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AWSSDK.AutoScaling" Version="3.7.5.12" />
+      <PackageReference Include="AWSSDK.AutoScaling" Version="3.7.5.15" />
     </ItemGroup>
 
 </Project>
